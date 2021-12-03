@@ -3,15 +3,16 @@ import './App.css'
 import React, { useState } from 'react'
 
 import { Tasks } from './Types'
+import { TodoTask } from './components/TodoTask'
 
 type headerProps = {
   task: string
   deadline: number
 }
 
-type ButtonProps = {
-  addTask: (e: React.MouseEvent<HTMLButtonElement>) => void
-}
+// type ButtonProps = {
+//   addTask: (e: React.MouseEvent<HTMLButtonElement>) => void
+// }
 
 const App: React.FC<headerProps> = () => {
   const [task, setTask] = useState<string>('')
@@ -55,7 +56,11 @@ const App: React.FC<headerProps> = () => {
         </div>
         <button onClick={addTask}>Add Task</button>
       </div>
-      <div className='todo-list'></div>
+      <div className='todo-list'>
+        {todoList.map((task: Tasks, key: number) => {
+          return <TodoTask task={task} key={key} />
+        })}
+      </div>
     </div>
   )
 }
