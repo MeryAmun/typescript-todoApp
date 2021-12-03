@@ -35,6 +35,14 @@ const App: React.FC<headerProps> = () => {
     setDeadline(0)
   }
 
+  const completeTask = (taskToDelete: string): void => {
+    setTodoList(
+      todoList.filter((task) => {
+        return task.taskName !== taskToDelete
+      })
+    )
+  }
+
   return (
     <div className='App'>
       <div className='header'>
@@ -58,7 +66,7 @@ const App: React.FC<headerProps> = () => {
       </div>
       <div className='todo-list'>
         {todoList.map((task: Tasks, key: number) => {
-          return <TodoTask task={task} key={key} />
+          return <TodoTask task={task} key={key} completeTask={completeTask} />
         })}
       </div>
     </div>
